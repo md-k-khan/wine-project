@@ -1,0 +1,26 @@
+name: model-wine-quality
+on: [push]
+
+jobs:
+  train-and-report:
+    runs-on: ubuntu-latest
+    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies and Run Training
+        run: |
+          pip3 install -r requirements.txt --no-cache-dir
+          python train.py  # generate plot.png
+
+      - name: Create CML Report
+        run: |
+          # Create CML report
+          cat metrics.txt >> report.md
+          echo '![](./plot.png "Confusion Matrix")' >> report.md
+          cml comment create report.md
+          
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
