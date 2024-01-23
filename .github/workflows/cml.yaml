@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          pip3 install -r requirements.txt
+          pip3 install -r requirements.txt --no-cache-dir
           python train.py  # generate plot.png
  
           # Create CML report
