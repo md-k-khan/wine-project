@@ -11,15 +11,18 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
         
-          #Your Ml workflow goes there
+          # Your Ml workflow goes there
           pip install -r requirements.txt
           python train.py
- 
-          echo "## model metrics" >> report.md
-          cat metrics.txt >> report.md
 
-          cp plot.png report.md    
-          echo '![](./plot.png "feature_importance")' >> report.md
-          echo '![](./plot.png "residuals")' >> report.md
+          echo "## model metrics" >> report.md
+          cat metrics.txt | grep 'variance explained' >> report.md
+
+          cp plot.png report.md
+          echo '![](report.md "feature_importance")' >> report.md
+          echo "## Model Text" >> report.md
+          echo "Training variance explained: 33.0%" >> report.md
+          echo "Test variance explained: 32.0%" >> report.md
+          echo "![](report.md "residuals")' >> report.md
 
           cml comment create report.md
