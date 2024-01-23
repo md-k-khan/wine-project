@@ -11,11 +11,20 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
         
+          #Your Ml workflow goes there
           pip install -r requirements.txt
-          python train.py  # generate plot.png
+          python train.py
  
-          # Create CML report
+          echo "## model metrics" >> report.md
           cat metrics.txt >> report.md
-          echo "model metrics" >> report.md
+
+          echo "## Data viz" >> report.md
+          cml-publish feature_importance.png --md >> report.md
+          cml-publish residuals.png --md >> report.md
+
+          cml-send-comment report.md
+
+          
+          
           
        
