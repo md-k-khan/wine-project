@@ -18,9 +18,8 @@ jobs:
           echo "## model metrics" >> report.md
           cat metrics.txt >> report.md
 
-          echo "## Data viz" >> report.md
-          cml comment create report.md --attach feature_importance.png
-          cml comment create report.md --attach residuals.png
+          echo '![](./plot.png "feature_importance")' >> report.md
+          echo '![](./plot.png "residuals")' >> report.md
 
 
           cml comment create report.md
