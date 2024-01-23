@@ -21,10 +21,4 @@ jobs:
           echo '![](./plot.png "feature_importance")' >> report.md
           echo '![](./plot.png "residuals")' >> report.md
 
-
           cml comment create report.md
-
-          
-          
-          
-       
