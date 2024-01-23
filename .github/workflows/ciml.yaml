@@ -18,6 +18,7 @@ jobs:
           echo "## model metrics" >> report.md
           cat metrics.txt >> report.md
 
+          cp plot.png report.md    
           echo '![](./plot.png "feature_importance")' >> report.md
           echo '![](./plot.png "residuals")' >> report.md
 
