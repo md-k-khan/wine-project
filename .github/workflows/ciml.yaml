@@ -13,6 +13,7 @@ jobs:
           pip install -r requirements.txt
           python train.py  
 
-          echo "# CML report" >> report.md
+          echo "# CML report" > report.md
           cat metrics.txt >> report.md
-         
+
+          cml comment create report.md
