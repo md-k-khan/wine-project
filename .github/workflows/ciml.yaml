@@ -16,4 +16,4 @@ jobs:
           echo "# CML report" > report.md
           cat metrics.txt >> report.md
 
-          ciml comment create report.md
+          cml-send-comment report.md
