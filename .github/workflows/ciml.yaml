@@ -11,8 +11,8 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          python train.py  # generate plot.png
+          python train.py  
 
           echo "# CML report" >> report.md
-          echo '![](./plot.png "feature_importance")' >> report.md
-          cml comment create report.md
+          cat metrics.txt >> report.md
+         
